@@ -7,6 +7,7 @@ public class JSexe {
 		for(int i = 1 ; i <= 5 ; i++) {
 			int result = (int)(Math.random() * 10) + 1; // 1 <= x < 11
 			// Math.random() : 0 <= x < 1 범위의 실수를 생성하는 메소드
+			// 실수를 생성하므로 int 타입으로 casting 필요
 			sum += result;
 		}
 		System.out.println("결과: " + sum);
