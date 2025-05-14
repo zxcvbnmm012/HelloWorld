@@ -2,6 +2,7 @@ package com.yedam;
 
 public class JSexe {
 	public static void main(String[] args) {
+		
 		test2();
 	
 	} // end of main()
