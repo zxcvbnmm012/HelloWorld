@@ -7,7 +7,7 @@ public class JSexe {
 	
 	} // end of main()
 	
-
+// 성공이지롱 ~~
 	
 	
 // test()
