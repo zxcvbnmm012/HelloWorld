@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class JSexe {
 	public static void main(String[] args) {
-		test7();
+		test8();
 	} // end of main()
 
 // test1()
@@ -139,6 +139,7 @@ public class JSexe {
 	public static void test7() {
 		Scanner scn = new Scanner(System.in);
 		String str = "친구목록은 ";
+		boolean isFirst = true;  // 첫번째 입력값에만 처리를 해주기 위한 변수 선언
 		while (true) {
 			System.out.println("친구 이름을 입력하세요");
 			String msg = scn.nextLine();
@@ -146,8 +147,38 @@ public class JSexe {
 				str += "입니다.";
 				break;
 			}
-			str += msg + " ";
+			if (isFirst) {
+				str += msg;        // 첫번째 입력값이 들어오면 str에 추가하고
+				isFirst = false;   // 변수를 false로 바꿔 두번째 입력값부터는 else에 조건을 받도록 한다
+			} else {
+				str += "," + msg;
+			}
 		}
 		System.out.println(str);
-	} // end of test()
+	} // end of test7()
+	
+	
+	
+	
+// test8() : 출력 method
+// 1) print : 줄바꿈 없이 출력
+// 2) printf : 뒤에 나열한 값을 매개값으로 받아 입력한 데이터타입으로 출력
+// 3) println : 줄바꿈하여 출력
+	public static void test8() {
+		System.out.print("문자");  // print : 줄바꿈 없음
+		System.out.print("문자");
+		System.out.println("");
+
+		System.out.printf("%s", "문자");           // printf : %s -> 문자 값을 매개값으로 받아 출력
+		System.out.printf("%s %d", "문자", 30);    // printf : %d -> 10진수 값을 매개값으로 받아 출력
+		System.out.printf("%s %d\n", "문자", 30);  // %d\n : 줄바꿈
+		System.out.printf("%.2f\n", 30.3);        // %.2f : 실수 값을 매개값으로 받아 소수점 둘째자리까지 출력
+		System.out.println("");
+		
+		
+		System.out.println("안녕하세요. 김해민입니다");
+		System.out.printf("%s %d %s", "나이는 ", 20, "세입니다.");
+		System.out.printf("%s %.1f %s", "몸무게는 ", 67.8, "입니다.");
+		
+	} // end of test8()
 } // end of class
