@@ -19,6 +19,11 @@ public class MemberExe {
 		boolean run = true;
 		Scanner scanner = new Scanner(System.in);
 		Member[] members = new Member[10];
+		Member member = new Member();
+		// 클래스 : 객체를 만들기 위한 설계도
+		// 클래스 변수 : 클래스로 선언한 변수, 해당 클래스의 객체 주소가 저장됨
+		// new 연산자 : 객체 생성 연산자, 생성자를 호출, 객체 생성 주소를 리턴
+		// 객체(클래스의 객체 : 인스턴스) : 클래스로부터 생성, new클래스()로 생성
 		
 		while(run) {
 			System.out.println("1.회원추가 2.수정 3.삭제 4.조회 5.종료");
@@ -33,8 +38,8 @@ public class MemberExe {
 			}
 			
 			if (selectNo == 1) {
+				member = new Member();
 				
-				Member member = new Member();
 				System.out.println("추가할 회원 정보를 입력하세요");
 				System.out.println("아이디>> ");
 				String id = scanner.nextLine();
@@ -55,7 +60,7 @@ public class MemberExe {
 				
 				for (int i = 0; i < members.length; i++) {
 					if (members[i] == null) {
-						members[i] = member;
+						members[i] = member; // member의 주소값에 담긴 값을 members[i]에 담아줌
 						System.out.println("등록 완료");
 						break;
 						
