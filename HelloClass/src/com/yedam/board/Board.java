@@ -59,7 +59,7 @@ public class Board {
 	}
 	
 	public void showInfo() {
-		System.out.printf(" %3d     %-12s   %4s\n", boardNo, title, writer);
+		System.out.printf(" %3d     %-12s  %s\n", boardNo, title, writer);
 	}
 	
 	public void showAllInfo() {
