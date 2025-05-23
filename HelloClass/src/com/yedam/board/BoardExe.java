@@ -23,31 +23,63 @@ public class BoardExe {
 		boards[9] = new Board(19, "자바가 힘들어요.", "오늘 기온이 19도입니다", "김민규");
 		boards[10] = new Board(20, "날씨가 좋습니다.", "오늘 기온이 20도입니다", "김민규");
 	}
+	
+	
+	boolean loginCheck() {
+		for (int i = 1; i <= 3; i++) {
+			String id = userMessage("아이디를 입력");
+			String pw = userMessage("비밀번호를 입력");
+			if (!UserExe.login(id, pw)) {  // 로그인 실패할 경우
+				System.out.println("아이디와 비밀번호를 확인하세요.");
+				if (i == 3) {
+					System.out.println("3번 실패했습니다. 종료합니다.");
+					break;
+				}
+				continue;
+			} // end of 로그인 실패할 경우
+			// 로그인을 성공하면 언제라도 반복문을 빠져 나와서 아래 코드를 실행. -> true 반환
+			return true; 
+		} // 3번의 기회를 제공.
+		return false; // for 문을 타지 않을 경우에도 반환값은 있어야함 -> for문 안에 return 넣으면 오류
+		
+	} // end of loginCheck()
 
 	// 메소드
 	void execute() {
 		
 		// 아이디 입력
 		// 비밀번호 입력
-		boolean run = UserExe.login(null, null);
 		
-		/*
-		 * String id = userMessage("아이디를 입력");
-		 * String pw = userMessage("비밀번호를 입력");
-		 * if (!UserExe.login(id, pw)){
-		 *       System.out.prinln("아이디와 비밀번호를 확인하세요!");
-		 *       return;
-		 *  }
-		 *  System.out.println("환영합니다!!!");
-		 */
+//		login 내 코드
+//		boolean run = UserExe.login(null, null);
+		
+		if (!loginCheck()) {
+			return; // loginCheck() 반환값이 false -> execute() 종료
+		}
+
+		
+		
+		boolean run = true;
+		System.out.println("환영합니다!!!");
 		
 		// 로그인 성공하면 while문 실행
 		while (run) {
+			
 			System.out.println("--------------------------------------");
 			System.out.println("   1.추가  2.수정  3.삭제  4.목록  5.종료");
 			System.out.println("--------------------------------------");
 			System.out.print("선택>> ");
-			int selectNo = Integer.parseInt(scn.nextLine());
+			int selectNo = 0;
+			
+			// 사용자가 문자를 입력하면 숫자로 변경할 때 예외 발생 : NumberFormatException
+			try {
+				selectNo = Integer.parseInt(scn.nextLine());
+				
+			} catch(NumberFormatException e) {
+				System.out.println("메뉴를 1 ~ 5번 중에 선택하세요");
+				continue;
+			}
+			
 			switch (selectNo) {
 			case 1: // 추가
 				addBoard();
@@ -64,6 +96,7 @@ public class BoardExe {
 			case 5: // 종료
 				System.out.println("end of prog.");
 				run = false;
+				break;
 			default:
 				System.out.println("메뉴를 다시 선택하세요");
 				
@@ -126,7 +159,15 @@ public class BoardExe {
 			} else if(str.equals("p")) {
 				page--;
 			} else {
-				int no = Integer.parseInt(str);
+				int no = 0;
+				try {
+					no = Integer.parseInt(str);
+					
+				} catch(NumberFormatException e) {
+					System.out.println("목록에 있는 글번호를 선택하세요.");
+					continue;
+				}
+				
 				Board sboard = getBoard(no);
 				if (sboard == null) {
 					System.out.println("조회결과 없습니다.");

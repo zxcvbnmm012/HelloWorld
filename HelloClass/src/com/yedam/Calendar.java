@@ -325,6 +325,32 @@ public class Calendar {
 
 
 		}
+	} // end of showMonth()
+	
+	
+	static boolean isLeapYear(int year) {
+		// 윤년이면 true, 평년이면 false
+		
+		if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+			return true;
+		} 
+		return false;
 	}
 	
-}
+//	교수님 코드
+//	static boolean isLeapYear(int year) {
+//		boolean leapYear = true;
+//		if (year % 4 != 0) {
+//			leapYear = false;
+//		}
+//		if (leapYear && year % 100 == 0) {
+//			leapYear = false;
+//		}
+//		if (!leapYear && year % 400 == 0) {
+//			leapYear = true;
+//		}
+//		return leapYear;
+//	}
+	
+	
+} // end of class
